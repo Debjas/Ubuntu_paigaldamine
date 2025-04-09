@@ -1,0 +1,23 @@
+#installime iso
+sudo wget https://assets.nagios.com/downloads/csp/CSP-latest.iso
+
+#kausta tegemine
+sudo mkdir /mnt/iso
+
+#ketta peale panemine
+sudo mount -o loop /home/ubuntu/CSB-latest.iso /mnt/iso
+
+#ZIP faili laadimine
+sudo wget https://assets.nagios.com/downloads/csp/CSP-latest.zip
+
+#kausta loomine
+sudo mkdir /mnt/zipfile
+
+#UNZIP-i alla laadimine
+# 1. RHEL/Centos Süsteemid
+sudo dnf install unzip
+# 2. Debian/Ubuntu Süsteemid
+sudo apt install unzip
+
+#UNZIP-ime faili
+sudo unzip /home/ubuntu/CSP-latest.zip -d /mnt/zipfile
