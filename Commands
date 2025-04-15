@@ -1,23 +1,19 @@
-#installime iso
-sudo wget https://assets.nagios.com/downloads/csp/CSP-latest.iso
+# Kui kasutate Ubuntut, siis palun installige Ubuntu update. Muidu ei tööta.
 
-#kausta tegemine
-sudo mkdir /mnt/iso
+# Liigume tmp kausta
+cd /tmp
+# Installiem nagios xi kausta
+sudo wget https://assets.nagios.com/downloads/nagiosxi/xi-latest.tar.gz
+# Teeme selle kausta nüüd lahti
+tar xzf xi-latest.tar.gz
+# Liigume Nagios-i kausta
+cd nagiosxi
+# Installime nagios xi
+sudo ./fullinstall
 
-#ketta peale panemine
-sudo mount -o loop /home/ubuntu/CSB-latest.iso /mnt/iso
+#  Kui nüüd on installitud, siis peaks tulema selline tekst:
+# Nagios XI Installation Complete!
+# You can access the Nagios XI web interface by visiting:
+#    http://serveri_IP/nagiosxi/
 
-#ZIP faili laadimine
-sudo wget https://assets.nagios.com/downloads/csp/CSP-latest.zip
-
-#kausta loomine
-sudo mkdir /mnt/zipfile
-
-#UNZIP-i alla laadimine
-# 1. RHEL/Centos Süsteemid
-sudo dnf install unzip
-# 2. Debian/Ubuntu Süsteemid
-sudo apt install unzip
-
-#UNZIP-ime faili
-sudo unzip /home/ubuntu/CSP-latest.zip -d /mnt/zipfile
+# Mine sinna lehele
