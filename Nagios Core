@@ -1,0 +1,29 @@
+sudo apt update
+# Installime Nagios-i
+sudo apt install -y nagios4 nagios-plugins-contrib nagios-nrpe-plugin
+  # Vastake küsimustele:
+    # OK
+    # No configuration
+# Stardime failid Apache jaoks
+sudo a2enmod authz_groupfile auth_digest
+# Muuda Nagios konfiguratsiooni faili
+sudo nano /etc/apache2/conf-enabled/nagios4-cgi.conf
+# Otsi üles järgmised read failis ja pane neile "#" ette (peaksid olema kõige all)
+  #  Require ip ::1/128 fc00::/7 fe80::/10 10.0.0.0/8 127.0.0.0/8 169.254.0.0/16 172.16.0.0/12 192.168.0.0/16
+  #  <Files "cmd.cgi">
+  #  Require all    granted
+  #  </Files>
+# Eemalda "#" järgmiselt realt
+  #  Require valid-user
+# Nüüd salvestage see fail ja lahkuge
+
+# Teeme kasutaja
+sudo htdigest -c /etc/nagios4/htdigest.users Nagios4 nagiosadmin
+# Restardime Apache Serveri
+sudo systemctl restart apache2
+# Lubame Apache 
+sudo ufw allow Apache
+
+# Minge veebilehele http://"IP_AADRESS"/nagios4/
+# Username nagiosadmin
+# Password "See mis panite"
